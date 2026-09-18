@@ -1,0 +1,19 @@
+{
+  "$comment": "Budgets read by .claude/hooks/context-budget.mjs (SessionStart, --brief). Lines for loaded files, bytes for split candidates. Change a budget only with a reason recorded in ROADMAP decisions.",
+  "files": {
+    "CLAUDE.md": { "lines": 110 },
+    "AGENTS.md": { "lines": 170 },
+    "docs/tasks/BACKLOG.md": { "lines": 100 },
+    "docs/tasks/ROADMAP.md": { "lines": 250 },
+    ".claude/agents/scrum-master.md": { "lines": 160 }
+  },
+  "patterns": [
+    { "match": ".claude/agents/*.md", "lines": 100 },
+    { "match": ".claude/skills/*/SKILL.md", "lines": 170 },
+    { "match": ".claude/rules/*.md", "lines": 120 },
+    { "match": "docs/tasks/TASK-*.md", "lines": 220 }
+  ],
+  "large_doc_bytes": 60000,
+  "large_doc_exclude": ["docs/game-design-bible/", "docs/canon/", "docs/tasks/archive/", "docs/_index/"],
+  "skip_dirs": ["node_modules", ".git", ".godot", ".expo", "android", "ios", "dist", "build", ".claude/worktrees"]
+}

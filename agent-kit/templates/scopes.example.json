@@ -1,0 +1,89 @@
+{
+  "$comment": "scope-guard config. Edit this, never the .mjs. Validate: node .claude/hooks/scope-guard.mjs --check ; try: --explain <agent|-> write <path> | shell \"<cmd>\" ; table: --matrix. Entry matching: 'dir/' = prefix, 'stem*' = stem, else exact file. Agents not listed anywhere are DENIED (fail-closed). The parent session (no agent) is allowed except global_deny and closed gates.",
+  "version": 1,
+  "project": "example-project",
+  "lead": "scrum-master",
+
+  "global_deny": {
+    "prefixes": ["node_modules/", ".expo/", "android/", "ios/"],
+    "exact": ["package-lock.json"],
+    "why": "generated (Expo CNG prebuild / package manager) — never hand-edited, by anyone"
+  },
+
+  "gates": [
+    { "prefixes": ["app/"], "open": true, "opened": "2026-08-31", "why": "Phase 1 gate — product code allowed once canon 01-05 were LOCKED" }
+  ],
+
+  "canon": {
+    "prefixes": ["docs/canon/"],
+    "owners": ["doc-steward"],
+    "why": "Canon changes go through a written proposal and a human decision (propose-design-change)."
+  },
+
+  "read_only": ["docs-librarian", "qa-mobile", "spec-auditor", "ux-reviewer", "explore", "plan"],
+
+  "write": {
+    "scrum-master": {
+      "allow": ["docs/", ".claude/", "CLAUDE.md", "AGENTS.md", "README.md", ".gitignore"],
+      "deny": ["docs/canon/", ".claude/skills/money-rules/"],
+      "why": "backlog, team definitions, hooks config, docs hygiene; production code belongs to the owning dev, canon to doc-steward"
+    },
+    "docs-janitor": {
+      "allow": ["docs/"],
+      "deny": ["docs/canon/"],
+      "why": "moves non-canon docs byte for byte; never canon, never code"
+    },
+    "task-author": { "allow": ["docs/tasks/"], "deny": [], "why": "task specs only" },
+    "doc-steward": {
+      "allow": ["docs/canon/", "docs/decisions/", ".claude/skills/money-rules/"],
+      "deny": ["docs/tasks/", "docs/research/"],
+      "why": "canonical docs and the money-rules cache"
+    },
+    "market-researcher": { "allow": ["docs/research/"], "deny": [], "why": "findings are candidates, never decisions" },
+    "workflow-subagent": {
+      "allow": ["work/probes/", "work/qa/"],
+      "deny": [],
+      "why": "generic identity the Workflow tool's runner presents to the hook for an ad-hoc agent() call with no .claude/agents/<name>.md of its own (field-discovered, three projects independently). Deliberately narrower than any named role: a sandbox for probes and QA logs only, never production code, never docs/ — a lens that turns out to need more runs as a real named Agent instead. --check will warn 'workflow-subagent has no .claude/agents/workflow-subagent.md' — that warning is expected and correct; do not silence it by creating a matching persona file."
+    },
+    "domain-engineer": { "allow": ["src/domain/", "src/application/"], "deny": [], "why": "the deterministic core" },
+    "persistence-dev": { "allow": ["src/infrastructure/"], "deny": [], "why": "SQLite, migrations, repositories" },
+    "mobile-dev": {
+      "allow": ["app/", "src/features/", "src/ui/", "assets/", "e2e/", "modules/", "package.json", "app.json", "tsconfig.json", "jest.config.js"],
+      "deny": [],
+      "why": "screens, navigation, UI, root config"
+    }
+  },
+
+  "shell": {
+    "scrum-master": { "tier": "lead" },
+    "docs-janitor": { "tier": "docs-ops" },
+    "workflow-subagent": { "tier": "check-runner" },
+    "spec-auditor": { "tier": "git-read" },
+    "qa-mobile": { "tier": "check-runner" },
+    "domain-engineer": { "tier": "dev" },
+    "persistence-dev": { "tier": "dev" },
+    "mobile-dev": { "tier": "dev" },
+    "docs-librarian": { "tier": "custom", "allow": ["^node\\s+scripts/(index-docs|reindex-if-stale)\\.mjs\\b"] },
+    "doc-steward": { "tier": "none" },
+    "task-author": { "tier": "none" },
+    "market-researcher": { "tier": "none" },
+    "ux-reviewer": { "tier": "none" }
+  },
+
+  "check_runners": [
+    "^npm\\s+(?:run\\s+(?:build|typecheck|test|lint|check)|test|ci)\\b",
+    "^npx\\s+(?:jest|tsc|expo-doctor)\\b",
+    "^(?:npx\\s+)?maestro\\s+test\\b"
+  ],
+
+  "lead_extra_allow": [
+    "^npx\\s+supabase\\s+(?:db\\s+push|migration\\s+(?:new|list|up)|db\\s+reset|status)\\b"
+  ],
+
+  "options": {
+    "dev_git_write": false,
+    "dev_dep_install": false,
+    "lead_dep_install": false,
+    "lead_rebase": false
+  }
+}

@@ -1,0 +1,8 @@
+
+# artefatos dos runs de canonizacao — entrada bruta, nao fonte
+.extract.json
+.canon-*.json
+.core-sources.json
+.track-sources.json
+.reparo.json
+.antes-canon.txt

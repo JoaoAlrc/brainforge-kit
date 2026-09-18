@@ -1,0 +1,64 @@
+{
+  "$comment": "Defaults for placeholders shared by projects in a track. --print-answers applies them before emitting <FILL:...>. Only project-specific choices remain for the interview. Users may override any answer. Track defaults take precedence over generic defaults.",
+  "generic": {
+    "CANON_PATHS": "docs/canon/",
+    "DECISION_LOG": "docs/DECISIONS.md",
+    "DOCS_ROOT": "docs/",
+    "EVIDENCE_DIR": "docs/qa/",
+    "MIGRATIONS_DIR": "supabase/migrations/",
+    "MIGRATION_NAMING": "timestamp + slug (20260916T1200_name.sql); the lead supplies the timestamp in the task, never the developer",
+    "MILESTONE_SOURCE": "docs/ROADMAP.md",
+    "OWNERS": "see .claude/hooks/scopes.json",
+    "QA_AGENT": "qa-web",
+    "DEFAULT_BRANCH": "main",
+    "IGNORED_DIRS": "node_modules/, dist/, .turbo/, .vercel/",
+    "REMOTE_URL": "(no remote yet; set it after the first push)",
+    "RISK_CLASS": "routine | logic | trust-critical",
+    "SHARED_DIRS": "src/lib/",
+    "SHARED_DOCS": "docs/",
+    "RUNTIME_METRICS": "none collected yet; add measured telemetry when available",
+    "HEAVY_DEPS": "none listed yet; add entries when the bundle grows",
+    "LEAK_TERMS": "none listed yet; name internal terms (tables, columns) that must not leak to clients",
+    "INTERNAL_FIELDS": "none listed yet; name technical fields that must not appear in public UI",
+    "GOLDEN_PATH": "define in CLAUDE.md: the main end-to-end user flow",
+    "INVARIANTES": "define in CLAUDE.md: rules that must never be violated",
+    "FORA_DO_MVP": "define in CLAUDE.md: work outside the first milestone",
+    "CONTEXTO_DE_USO": "define in CLAUDE.md: when and how the product is used",
+    "CAMADAS": "routes → components/hooks → lib (domain) → integrations. Each layer calls only the layer below.",
+    "TENANT": "single-tenant; adjust for a multi-tenant project",
+    "SCOPE_KEY": "user_id",
+    "SECRET_SYMBOL": "SERVICE_ROLE_KEY",
+    "SURFACES": "web",
+    "TOKENS_DIR": "src/styles.css",
+    "TOKENS_FILE": "src/styles.css",
+    "PRIMITIVES_DIR": "src/components/ui/",
+    "RULES_PATHS": "src/lib/rules/",
+    "REPORT_LANGUAGE": "en"
+  },
+  "track:web-saas": {
+    "ENGINE": "TanStack Start + Supabase",
+    "DB": "Postgres + RLS via Supabase",
+    "CHECK_COMMAND": "npm test && npx tsc --noEmit",
+    "GENERATED_FILES": "src/routeTree.gen.ts",
+    "LANDING_PATHS": "src/routes/index.tsx, src/routes/pricing.tsx, src/routes/about.tsx"
+  },
+  "track:mobile-expo": {
+    "ENGINE": "Expo / React Native",
+    "DB": "Postgres + RLS via Supabase",
+    "CHECK_COMMAND": "npx tsc --noEmit && npx jest",
+    "GENERATED_FILES": "(no known generated files; adjust if the project uses code generation)"
+  },
+  "track:godot-game": {
+    "ENGINE": "Godot 4",
+    "CHECK_COMMAND": "godot --headless --quit",
+    "GENERATED_FILES": "(no known generated files)"
+  },
+  "track:unreal-game": {
+    "ENGINE": "Unreal 5",
+    "CHECK_COMMAND": "(see check_runners in scopes.json; depends on UE_ROOT/ENGINE_DIR)",
+    "GENERATED_FILES": "(no known generated files)"
+  },
+  "money_track_extra": {
+    "MONEY_PATHS": "src/lib/billing/, src/routes/api/checkout"
+  }
+}

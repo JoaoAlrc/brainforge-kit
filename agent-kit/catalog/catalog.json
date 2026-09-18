@@ -1,0 +1,2038 @@
+{
+  "$comment": "GENERATED catalog index and default scopes. Track definitions come from catalog/tracks.json; role and skill content lives in catalog/agents and catalog/skills. Used by bootstrap/new-project.mjs and bootstrap/gap-report.mjs.",
+  "version": 1,
+  "core": {
+    "why": "Every project needs coordination, context hygiene, and a handoff contract, from games to SaaS.",
+    "agents": [
+      "scrum-master",
+      "docs-janitor",
+      "task-author"
+    ],
+    "skills": [
+      "agent-forge",
+      "context-hygiene",
+      "handoff-contract",
+      "repo-ops",
+      "task-protocol",
+      "verify-falsification",
+      "brainstorming",
+      "test-driven-development",
+      "systematic-debugging"
+    ],
+    "opcionais": {
+      "docs-librarian": "when docs/ grows beyond roughly 20 files and answering small questions requires broad reading",
+      "spec-auditor": "when written specifications could silently diverge from implementation",
+      "context-scout": "when finding the right file is itself significant work",
+      "code-reviewer": "when another contributor starts writing code; includes regression review",
+      "canon-lookup": "when a binding body of reference material exists: product bible, brief, canon, or product docs",
+      "propose-change": "when an agent needs to propose a change to a document it does not own"
+    }
+  },
+  "tracks": {
+    "web-saas": {
+      "lead": "scrum-master",
+      "why": "Web app with a backend: TanStack/Next + Supabase/Postgres, public pages and an authenticated area.",
+      "agents": [
+        "app-dev",
+        "platform-dev",
+        "landing-dev",
+        "qa-web",
+        "ux-reviewer",
+        "design-steward",
+        "code-reviewer"
+      ],
+      "skills": [
+        "perf-budget"
+      ],
+      "condicionais": {
+        "handles money": [
+          "commerce-dev",
+          "money-rules",
+          "security-reviewer"
+        ],
+        "handles PII or sensitive data": [
+          "security-reviewer",
+          "doc-steward"
+        ],
+        "sells to children": [
+          "kids-compliance",
+          "store-compliance"
+        ],
+        "conversion funnel matters": [
+          "conversion-reviewer",
+          "market-researcher"
+        ]
+      },
+      "check_runners": [
+        "npm run build",
+        "npm test",
+        "npx tsc --noEmit",
+        "npm run lint"
+      ],
+      "global_deny": [
+        "src/routeTree.gen.ts",
+        "src/integrations/supabase/types.ts",
+        "package-lock.json",
+        "vite.config.ts",
+        "components.json",
+        "eslint.config.js"
+      ]
+    },
+    "mobile-expo": {
+      "lead": "scrum-master",
+      "why": "React Native app with Expo, usually with a Supabase backend and its own domain logic.",
+      "agents": [
+        "mobile-dev",
+        "backend-dev",
+        "domain-engineer",
+        "qa-mobile",
+        "ux-reviewer",
+        "design-steward",
+        "code-reviewer"
+      ],
+      "skills": [
+        "store-compliance"
+      ],
+      "condicionais": {
+        "handles money": [
+          "money-rules",
+          "security-reviewer"
+        ],
+        "handles PII or sensitive data": [
+          "security-reviewer",
+          "doc-steward"
+        ],
+        "child audience": [
+          "kids-compliance"
+        ],
+        "complex local persistence": [
+          "persistence-dev"
+        ],
+        "funnel or market discovery": [
+          "market-researcher"
+        ]
+      },
+      "check_runners": [
+        "npx tsc --noEmit",
+        "npx jest",
+        "npx expo-doctor",
+        "npm run lint"
+      ],
+      "global_deny": [
+        "ios/",
+        "android/",
+        ".expo/",
+        "package-lock.json"
+      ]
+    },
+    "godot-game": {
+      "lead": "scrum-master",
+      "why": "Godot game: scenes/node tree, GDScript, and headless verification.",
+      "agents": [
+        "game-designer",
+        "godot-gameplay-engineer",
+        "game-feel-engineer",
+        "qa-gameplay",
+        "adversarial-player",
+        "art-director",
+        "architecture-reviewer",
+        "design-librarian"
+      ],
+      "skills": [
+        "verify-gameplay",
+        "adversarial-playtest",
+        "review-architecture",
+        "canon-lookup"
+      ],
+      "condicionais": {
+        "has authored levels": [
+          "level-designer",
+          "design-auditor"
+        ],
+        "simulation or combat rules are expressed as data": [
+          "rules-engineer"
+        ],
+        "audio matters": [
+          "audio-designer"
+        ],
+        "heavy art pipeline": [
+          "tech-artist",
+          "visual-identity"
+        ],
+        "shipping to a store": [
+          "store-compliance",
+          "market-researcher"
+        ],
+        "needs human playtesting": [
+          "human-playtest"
+        ]
+      },
+      "check_runners": [
+        "godot --headless --quit",
+        "godot --headless --script"
+      ],
+      "global_deny": [
+        ".godot/",
+        "export_presets.cfg",
+        ".import/"
+      ]
+    },
+    "unreal-game": {
+      "lead": "scrum-master",
+      "why": "Unreal game: Actor/Component, Blueprint versus C++, and an asset-heavy pipeline.",
+      "agents": [
+        "game-designer",
+        "unreal-gameplay-engineer",
+        "game-feel-engineer",
+        "qa-gameplay",
+        "adversarial-player",
+        "art-director",
+        "architecture-reviewer",
+        "design-librarian"
+      ],
+      "skills": [
+        "verify-gameplay",
+        "adversarial-playtest",
+        "review-architecture",
+        "canon-lookup",
+        "unreal-ops"
+      ],
+      "condicionais": {
+        "has authored levels": [
+          "level-designer",
+          "design-auditor"
+        ],
+        "simulation or combat rules are expressed as data": [
+          "rules-engineer"
+        ],
+        "audio matters": [
+          "audio-designer"
+        ],
+        "heavy art or build pipeline": [
+          "tech-artist",
+          "unreal-pipeline-engineer",
+          "visual-identity"
+        ],
+        "needs human playtesting": [
+          "human-playtest"
+        ]
+      },
+      "check_runners": [
+        "<ENGINE_DIR>/Engine/Build/BatchFiles/Build.bat <PROJECT>Editor Win64 Development -Project=<UE_ROOT>/<PROJECT>.uproject",
+        "<ENGINE_DIR>/Engine/Binaries/Win64/UnrealEditor-Cmd.exe <UE_ROOT>/<PROJECT>.uproject -ExecCmds=\"Automation RunTests\" -unattended -nullrhi"
+      ],
+      "global_deny": [
+        "Binaries/",
+        "Intermediate/",
+        "Saved/",
+        "DerivedDataCache/"
+      ]
+    }
+  },
+  "agents": {
+    "scrum-master": {
+      "purpose": "Team lead and sole agent communicating with the user: reads the backlog, writes tasks with risk classes, delegates, verifies handoffs, commits DONE work, evolves the team, and reports.",
+      "tracks": [
+        "*"
+      ],
+      "placeholders": [
+        "CANON_PATHS",
+        "CHECK_COMMAND",
+        "DECISION_LOG",
+        "DELEGATABLE_AGENTS",
+        "DOCS_ROOT",
+        "ENGINE",
+        "FORA_DO_MVP",
+        "MIGRATIONS_DIR",
+        "MONEY_PATHS",
+        "OWNERS",
+        "PRODUTO_EM_UMA_LINHA",
+        "PROJECT",
+        "QA_AGENT",
+        "RISK_CLASS"
+      ],
+      "why": "Team lead and sole agent communicating with the user: reads the backlog, writes tasks with risk classes, delegates, verifies handoffs, commits DONE work, evolves the team, and reports.",
+      "model": "opus",
+      "shell": "lead",
+      "read_only": false,
+      "write": [
+        "docs/",
+        ".claude/",
+        "CLAUDE.md",
+        "AGENTS.md",
+        "README.md",
+        ".gitignore"
+      ],
+      "deny": [
+        "docs/canon/",
+        "docs/decisions/",
+        "docs/research/"
+      ],
+      "needs_skills": [
+        "repo-ops",
+        "task-protocol"
+      ]
+    },
+    "docs-janitor": {
+      "purpose": "Moves, archives, splits, and indexes non-canon documents byte for byte so agents do not load history just to find current state.",
+      "tracks": [
+        "*"
+      ],
+      "placeholders": [
+        "CANON_PATHS",
+        "CHECK_COMMAND",
+        "DOCS_ROOT",
+        "PROJECT",
+        "SHARED_DOCS"
+      ],
+      "why": "Only performs context hygiene in non-canon docs: writes tasks/archive/agent-ops, never canon, ADRs, architecture, research, briefs, code, or .claude. A project may explicitly expand its prefix to all of docs/.",
+      "model": "sonnet",
+      "shell": "docs-ops",
+      "read_only": false,
+      "write": [
+        "docs/tasks/",
+        "docs/archive/",
+        "docs/agent-ops/"
+      ],
+      "deny": [
+        "docs/canon/",
+        "docs/adrs/",
+        "docs/architecture/",
+        "docs/research/",
+        "docs/coordination/BRIEF.md",
+        ".claude/",
+        "CLAUDE.md"
+      ],
+      "needs_skills": [
+        "context-hygiene",
+        "handoff-contract"
+      ]
+    },
+    "docs-librarian": {
+      "purpose": "Answers what documents say about a topic in at most 300 words, with file/section, short quotation, and status label; read-only, avoiding full-canon loading by other agents.",
+      "tracks": [
+        "*"
+      ],
+      "placeholders": [
+        "CANON_PATHS",
+        "CHECK_COMMAND",
+        "DECISION_LOG",
+        "ENGINE",
+        "EVIDENCE_DIR",
+        "MIGRATIONS_DIR",
+        "OWNERS",
+        "PROJECT"
+      ],
+      "why": "Produces text returned to the caller, never a file. Writing would create a second source of authority over canon the role should only cite.",
+      "model": "haiku",
+      "shell": "none",
+      "read_only": true,
+      "write": [],
+      "needs_skills": [
+        "canon-lookup"
+      ]
+    },
+    "task-author": {
+      "purpose": "Turns a roadmap milestone into the complete TASK-NNN tree with one owner, dependencies, risk, and falsifiable criteria before execution; writes only in docs/tasks/.",
+      "tracks": [
+        "*"
+      ],
+      "placeholders": [
+        "CANON_PATHS",
+        "CHECK_COMMAND",
+        "ENGINE",
+        "MIGRATIONS_DIR",
+        "MIGRATION_NAMING",
+        "MILESTONE_SOURCE",
+        "PROJECT",
+        "RISK_CLASS"
+      ],
+      "why": "Writes specifications, never code. docs/tasks/ covers its outputs; canon, .claude/, and TASK-TEMPLATE are denied because the role reads but does not own them. No Bash means no shell tier.",
+      "model": "opus",
+      "shell": "none",
+      "read_only": false,
+      "write": [
+        "docs/tasks/"
+      ],
+      "deny": [
+        "docs/canon/",
+        ".claude/",
+        "docs/tasks/TASK-TEMPLATE.md"
+      ],
+      "needs_skills": [
+        "task-protocol"
+      ]
+    },
+    "spec-auditor": {
+      "purpose": "Read-only auditor comparing delivery against canon, earlier deliveries, and documented versus actual behavior; requires two cited pieces of evidence per finding.",
+      "tracks": [
+        "*"
+      ],
+      "placeholders": [
+        "CANON_PATHS",
+        "DONO_DO_DOC",
+        "EVIDENCE_DIR",
+        "GATILHO_DE_RISCO",
+        "PROJECT",
+        "QA_AGENT",
+        "REPORT_LANGUAGE",
+        "VIOLACOES_DO_DOMINIO"
+      ],
+      "why": "Reviewers do not write. Findings belong in the return/handoff; write access would let reviewers fix the discrepancy they should report and bypass human adjudication.",
+      "model": "opus",
+      "shell": "git-read",
+      "read_only": true,
+      "write": [],
+      "needs_skills": [
+        "canon-lookup",
+        "handoff-contract"
+      ]
+    },
+    "context-scout": {
+      "purpose": "Reports what canonical documents say, with classifications and sources, and locates code symbols within a hard budget of six tool calls and 300 words.",
+      "tracks": [
+        "*"
+      ],
+      "placeholders": [
+        "CANON_PATHS",
+        "ENGINE",
+        "PROJECT"
+      ],
+      "why": "A context reader whose body forbids opinions and whose frontmatter denies Write/Edit/Bash/NotebookEdit/Agent/WebSearch/WebFetch. Write scope would exceed its role and turn a low-cost answer into canon.",
+      "model": "haiku",
+      "shell": "none",
+      "read_only": true,
+      "write": [],
+      "needs_skills": [
+        "canon-lookup"
+      ]
+    },
+    "code-reviewer": {
+      "purpose": "Read-only reviewer covering STRUCTURE (architectural coherence) and REGRESSION (silent costs of changes) on the same diff, replacing a separate regression auditor.",
+      "tracks": [
+        "*"
+      ],
+      "placeholders": [
+        "CANON_PATHS",
+        "CHECK_COMMAND",
+        "DECISION_LOG",
+        "ENGINE",
+        "MIGRATIONS_DIR",
+        "OWNERS",
+        "PROJECT",
+        "REPORT_LANGUAGE",
+        "RISK_CLASS",
+        "RULES_PATHS",
+        "TOKENS_DIR"
+      ],
+      "why": "A writable reviewer can fix its own finding and lose independence. Empty write scope; shell limited to git status/diff/log/show/blame. Everything else returns through the handoff.",
+      "model": "opus",
+      "shell": "git-read",
+      "read_only": true,
+      "write": [],
+      "needs_skills": [
+        "handoff-contract",
+        "verify-falsification"
+      ]
+    },
+    "app-dev": {
+      "purpose": "Owns authenticated application code in a multi-tenant web SaaS: product routes (public per tenant and dashboard), components, hooks, and assets. Builds screens, flows, and states; never writes data access, migrations, routing infrastructure, design tokens, marketing routes, or money paths. Names those needs in the handoff to the owner.",
+      "tracks": [
+        "web-saas"
+      ],
+      "placeholders": [
+        "CANON_PATHS",
+        "CHECK_COMMAND",
+        "DB",
+        "ENGINE",
+        "GENERATED_FILES",
+        "MIGRATIONS_DIR",
+        "MONEY_PATHS",
+        "PROJECT",
+        "TENANT"
+      ],
+      "why": "Owns authenticated application code in a multi-tenant web SaaS: product routes (public per tenant and dashboard), components, hooks, and assets. Builds screens, flows, and states; never writes data access, migrations, routing infrastruct...",
+      "model": "sonnet",
+      "shell": "dev",
+      "read_only": false,
+      "write": [
+        "src/routes/",
+        "src/components/",
+        "src/hooks/",
+        "public/"
+      ],
+      "deny": [
+        "src/routes/__root.tsx",
+        "src/routes/auth*",
+        "src/routes/_authenticated/route.tsx",
+        "src/routes/api/",
+        "src/routeTree.gen.ts",
+        "src/components/ui/",
+        "src/components/payment/",
+        "src/styles.css",
+        "src/config/brand.ts",
+        "src/lib/",
+        "src/integrations/",
+        "supabase/",
+        "docs/",
+        ".claude/",
+        "package.json",
+        "package-lock.json",
+        "bun.lock",
+        "vite.config.ts",
+        "components.json",
+        "eslint.config.js",
+        "wrangler.*"
+      ],
+      "needs_skills": [
+        "handoff-contract"
+      ]
+    },
+    "platform-dev": {
+      "purpose": "Owns web SaaS backend/platform foundations: schema and migrations with RLS, authentication and roles, tenant resolution, server functions, domain state machines, SSR infrastructure, and decision documents. Delivers the server function and stops; app-dev owns UI and commerce-dev owns money.",
+      "tracks": [
+        "web-saas"
+      ],
+      "placeholders": [
+        "CANON_PATHS",
+        "CHECK_COMMAND",
+        "DB",
+        "GENERATED_FILES",
+        "MIGRATIONS_DIR",
+        "MONEY_PATHS",
+        "PROJECT",
+        "RISK_CLASS"
+      ],
+      "why": "Scope follows responsibility boundaries, not convenience.",
+      "model": "opus",
+      "shell": "dev",
+      "read_only": false,
+      "write": [
+        "supabase/",
+        "src/lib/",
+        "src/integrations/",
+        "src/routes/__root.tsx",
+        "src/routes/_authenticated/route.tsx",
+        "src/routes/robots*",
+        "src/routes/sitemap*",
+        "src/router.tsx",
+        "src/server.ts",
+        "src/start.ts",
+        "src/env.ts",
+        "scripts/",
+        "docs/adrs/",
+        "package.json",
+        "vitest.config.ts",
+        ".env.example"
+      ],
+      "deny": [
+        "src/lib/pricing/",
+        "src/lib/payments/",
+        "src/lib/billing/",
+        "src/lib/commerc*",
+        "src/lib/stripe*",
+        "src/lib/entitlements*",
+        "src/lib/subscriptions*",
+        "src/lib/plans.ts",
+        "src/integrations/types.ts",
+        "src/routeTree.gen.ts",
+        "package-lock.json",
+        "bun.lock",
+        "vite.config.ts",
+        "components.json",
+        "eslint.config.js"
+      ],
+      "needs_skills": [
+        "handoff-contract"
+      ]
+    },
+    "landing-dev": {
+      "purpose": "Builds and edits the public marketing surfaces of a web-saas project — landing routes, marketing sections, nav/footer, brand copy and funnel instrumentation — under a hard copy-honesty and price-truth contract, without touching the authenticated app, money paths or backend logic.",
+      "tracks": [
+        "web-saas"
+      ],
+      "placeholders": [
+        "CANON_PATHS",
+        "CHECK_COMMAND",
+        "GENERATED_FILES",
+        "LANDING_PATHS",
+        "MONEY_PATHS",
+        "PROJECT"
+      ],
+      "why": "Builds and edits the public marketing surfaces of a web-saas project — landing routes, marketing sections, nav/footer, brand copy and funnel instrumentation — under a hard copy-honesty and price-truth contract, without touching the authe...",
+      "model": "opus",
+      "shell": "check-runner",
+      "read_only": false,
+      "write": [
+        "src/routes/index.tsx",
+        "src/components/landing/",
+        "src/components/marketing/",
+        "src/components/site/",
+        "src/config/brand.ts",
+        "public/",
+        "docs/landing/"
+      ],
+      "deny": [
+        "src/components/ui/",
+        "src/styles.css",
+        "src/lib/",
+        "api/",
+        "supabase/",
+        "src/routeTree.gen.ts",
+        "vite.config.ts",
+        "components.json",
+        "eslint.config.js",
+        "package.json",
+        "package-lock.json"
+      ],
+      "needs_skills": [
+        "handoff-contract"
+      ]
+    },
+    "commerce-dev": {
+      "purpose": "Sole owner of money and access-grant paths: prices/totals, checkout, provider webhooks, balance ledger, entitlements/claims/activation, subscriptions, and billing. The webhook is the sole authority for granting access.",
+      "tracks": [
+        "web-saas"
+      ],
+      "placeholders": [
+        "CANON_PATHS",
+        "CHECK_COMMAND",
+        "DB",
+        "MIGRATIONS_DIR",
+        "MONEY_PATHS",
+        "PROJECT",
+        "RISK_CLASS"
+      ],
+      "why": "Sole owner of money and access-grant paths: prices/totals, checkout, provider webhooks, balance ledger, entitlements/claims/activation, subscriptions, and billing. The webhook is the sole authority for granting access.",
+      "model": "opus",
+      "shell": "dev",
+      "read_only": false,
+      "write": [
+        "src/lib/pricing/",
+        "src/lib/payments/",
+        "src/lib/billing/",
+        "src/routes/api/payments/",
+        "src/routes/api/billing/",
+        "src/routes/checkout*",
+        "src/routes/subscribe*",
+        "src/routes/activate*",
+        "src/components/payment/",
+        "supabase/migrations/"
+      ],
+      "deny": [
+        "docs/canon/",
+        "src/routes/api/"
+      ],
+      "needs_skills": [
+        "handoff-contract",
+        "money-rules"
+      ]
+    },
+    "qa-web": {
+      "purpose": "Read-only web SaaS QA: runs project checks (build, types, lint, counted tests) and statically inspects routes, UI states, claims/gating, migrations, and bundle leaks. Reports numbered defects to owners without fixing them.",
+      "tracks": [
+        "web-saas"
+      ],
+      "placeholders": [
+        "CHECK_COMMAND",
+        "DB",
+        "GENERATED_FILES",
+        "LEAK_TERMS",
+        "MIGRATIONS_DIR",
+        "OWNERS",
+        "PROJECT",
+        "REPORT_LANGUAGE",
+        "RISK_CLASS",
+        "SCOPE_KEY",
+        "SECRET_SYMBOL"
+      ],
+      "why": "Read-only web SaaS QA: runs project checks (build, types, lint, counted tests) and statically inspects routes, UI states, claims/gating, migrations, and bundle leaks. Reports numbered defects to owners without fixing them.",
+      "model": "sonnet",
+      "shell": "check-runner",
+      "read_only": true,
+      "write": [],
+      "needs_skills": [
+        "handoff-contract"
+      ]
+    },
+    "ux-reviewer": {
+      "purpose": "Read-only reviewer deciding whether an implemented screen is structurally shippable: states, golden-path friction, trust surfaces, width/reach, accessibility, honest copy, and recovery. Finds and reports; never implements or executes anything and does not judge visual taste.",
+      "tracks": [
+        "web-saas",
+        "mobile-expo"
+      ],
+      "placeholders": [
+        "CANON_PATHS",
+        "CONTEXTO_DE_USO",
+        "DOCS_ROOT",
+        "GOLDEN_PATH",
+        "INTERNAL_FIELDS",
+        "OWNERS",
+        "PROJECT",
+        "QA_AGENT",
+        "TOKENS_DIR"
+      ],
+      "why": "Read-only reviewer deciding whether an implemented screen is structurally shippable: states, golden-path friction, trust surfaces, width/reach, accessibility, honest copy, and recovery. Finds and reports; never implements or executes any...",
+      "model": "sonnet",
+      "shell": "none",
+      "read_only": true,
+      "write": [],
+      "needs_skills": [
+        "handoff-contract"
+      ]
+    },
+    "security-reviewer": {
+      "purpose": "Read-only security reviewer: checks whether a non-owner can read, write, forge, or serve another person's data and whether public surfaces leak information. Uses violation-based severity (BLOCKER/MAJOR/MINOR) and names an owner. Never implements.",
+      "tracks": [
+        "web-saas",
+        "mobile-expo"
+      ],
+      "placeholders": [
+        "CANON_PATHS",
+        "DB",
+        "DECISION_LOG",
+        "MIGRATIONS_DIR",
+        "OWNERS",
+        "PROJECT",
+        "RISK_CLASS",
+        "RULES_PATHS"
+      ],
+      "why": "Read-only security reviewer: checks whether a non-owner can read, write, forge, or serve another person's data and whether public surfaces leak information. Uses violation-based severity (BLOCKER/MAJOR/MINOR) and names an owner. Never im...",
+      "model": "opus",
+      "shell": "git-read",
+      "read_only": true,
+      "write": [],
+      "needs_skills": [
+        "handoff-contract",
+        "money-rules",
+        "verify-falsification"
+      ]
+    },
+    "design-steward": {
+      "purpose": "Sole owner of the design token layer (colour, type scale, spacing, radii, motion) and the shared UI primitives that consume it, plus the one-page visual direction that justifies them — so no other agent ever hard-codes a colour or a spacing value.",
+      "tracks": [
+        "web-saas",
+        "mobile-expo"
+      ],
+      "placeholders": [
+        "CANON_PATHS",
+        "CHECK_COMMAND",
+        "ENGINE",
+        "PRIMITIVES_DIR",
+        "PROJECT",
+        "TOKENS_DIR",
+        "TOKENS_FILE"
+      ],
+      "why": "Sole owner of the design token layer (colour, type scale, spacing, radii, motion) and the shared UI primitives that consume it, plus the one-page visual direction that justifies them — so no other agent ever hard-codes a colour or a spac...",
+      "model": "opus",
+      "shell": "none",
+      "read_only": false,
+      "write": [
+        "<TOKENS_FILE>",
+        "<PRIMITIVES_DIR>/",
+        "<CANON_PATHS>/"
+      ],
+      "deny": [
+        "<CANON_PATHS>/audits/"
+      ],
+      "needs_skills": [
+        "handoff-contract"
+      ]
+    },
+    "conversion-reviewer": {
+      "purpose": "Read-only public-funnel reviewer: reads landing, pricing, and checkout entry as a skeptical prospect ready to pay. Reviews COPY (does the claim survive scrutiny?) and FUNNEL (can an unfamiliar paying customer complete payment?). Judges persuasion and payment flow, not usability or correctness. Never implements; no shell.",
+      "tracks": [
+        "web-saas"
+      ],
+      "placeholders": [
+        "BUYER_PERSONA",
+        "CANON_PATHS",
+        "OWNERS",
+        "PROJECT",
+        "PUBLIC_ROUTES",
+        "QA_AGENT",
+        "REPORT_LANGUAGE"
+      ],
+      "why": "Read-only public-funnel reviewer: reads landing, pricing, and checkout entry as a skeptical prospect ready to pay. Reviews COPY (does the claim survive scrutiny?) and FUNNEL (can an unfamiliar paying customer complete payment?). Judges p...",
+      "model": "opus",
+      "shell": "none",
+      "read_only": true,
+      "write": [],
+      "needs_skills": [
+        "handoff-contract"
+      ]
+    },
+    "market-researcher": {
+      "purpose": "Brings external evidence about competitors, suppliers, prices, reviews, communities, and platform policies into the project in two modes: DEEP DIVE into one question or SCAN a list of opportunities. Writes only dated candidate reports for human adjudication, never decisions.",
+      "tracks": [
+        "web-saas",
+        "mobile-expo",
+        "godot-game"
+      ],
+      "placeholders": [
+        "CANON_PATHS",
+        "COMPETITORS",
+        "DECISION_LOG",
+        "PROJECT",
+        "RESEARCH_DIR",
+        "STANDING_WATCH"
+      ],
+      "why": "Brings external evidence about competitors, suppliers, prices, reviews, communities, and platform policies into the project in two modes: DEEP DIVE into one question or SCAN a list of opportunities. Writes only dated candidate reports for human ...",
+      "model": "sonnet",
+      "shell": "none",
+      "read_only": false,
+      "write": [
+        "docs/research/"
+      ],
+      "deny": [
+        "docs/canon/",
+        "docs/game-design-bible/",
+        "docs/tasks/",
+        "docs/adrs/",
+        ".claude/",
+        "src/",
+        "app/",
+        "apps/",
+        "packages/",
+        "supabase/",
+        "scripts/"
+      ],
+      "needs_skills": [
+        "canon-lookup",
+        "handoff-contract",
+        "propose-change",
+        "research-protocol"
+      ]
+    },
+    "mobile-dev": {
+      "purpose": "Owns Expo presentation (Expo Router app/, src/features/, src/ui/, assets/, Maestro e2e/, and root configuration): builds screens and component tests, renders results returned by the authority owner, and never decides or calculates business rules on the client.",
+      "tracks": [
+        "mobile-expo"
+      ],
+      "placeholders": [
+        "CHECK_COMMAND",
+        "ENGINE",
+        "GENERATED_FILES",
+        "GOLDEN_PATH",
+        "OWNERS",
+        "PROJECT",
+        "QA_AGENT",
+        "TOKENS_DIR",
+        "USER_MOMENT"
+      ],
+      "why": "Owns Expo presentation (Expo Router app/, src/features/, src/ui/, assets/, Maestro e2e/, and root configuration): builds screens and component tests, renders results returned by the authority owner, and never decides or calculates busine...",
+      "model": "sonnet",
+      "shell": "dev",
+      "read_only": false,
+      "write": [
+        "app/",
+        "src/features/",
+        "src/ui/",
+        "assets/",
+        "e2e/",
+        "__mocks__/",
+        "app.json",
+        "app.config.ts",
+        "babel.config.js",
+        "metro.config.js",
+        "jest.config.js",
+        "jest.setup.ts"
+      ],
+      "deny": [
+        "src/domain/",
+        "src/application/",
+        "src/infrastructure/",
+        "supabase/",
+        "backend/",
+        "android/",
+        "ios/",
+        "modules/",
+        "docs/",
+        ".claude/",
+        "package.json",
+        "package-lock.json"
+      ],
+      "needs_skills": [
+        "handoff-contract"
+      ]
+    },
+    "backend-dev": {
+      "purpose": "Owns the server and database: schema, RLS, migrations, SECURITY DEFINER RPCs, Edge Functions, and database tests. The client sends intent; the database decides.",
+      "tracks": [
+        "web-saas",
+        "mobile-expo"
+      ],
+      "placeholders": [
+        "CANON_PATHS",
+        "CHECK_COMMAND",
+        "DB",
+        "MIGRATIONS_DIR",
+        "PROJECT",
+        "QA_AGENT",
+        "RISK_CLASS",
+        "TESTS_DIR"
+      ],
+      "why": "Owns the server and database: schema, RLS, migrations, SECURITY DEFINER RPCs, Edge Functions, and database tests. The client sends intent; the database decides.",
+      "model": "opus",
+      "shell": "check-runner",
+      "read_only": false,
+      "write": [
+        "supabase/migrations/",
+        "supabase/functions/",
+        "supabase/tests/",
+        "supabase/seed.sql",
+        "scripts/db/",
+        "docs/architecture/"
+      ],
+      "deny": [
+        "app/",
+        "apps/mobile/",
+        "src/",
+        ".claude/",
+        "docs/canon/",
+        "docs/tasks/",
+        "supabase/.temp/",
+        ".lovable/",
+        "package.json"
+      ],
+      "needs_skills": [
+        "handoff-contract",
+        "money-rules"
+      ]
+    },
+    "qa-mobile": {
+      "purpose": "Runs verification against task acceptance criteria and reports PASS/FAIL per criterion with trimmed evidence. Read-only on code: finds defects, never fixes them or routes work; scrum-master routes findings to owners.",
+      "tracks": [
+        "mobile-expo"
+      ],
+      "placeholders": [
+        "CHECK_COMMAND",
+        "DOCS_ROOT",
+        "GOLDEN_FIXTURES",
+        "NARROW_TEST_COMMAND",
+        "PROJECT",
+        "REPORT_LANGUAGE",
+        "RISK_CLASS"
+      ],
+      "why": "Runs verification against task acceptance criteria and reports PASS/FAIL per criterion with trimmed evidence. Read-only on code: finds defects, never fixes them or routes work; scrum-master routes findings to owners.",
+      "model": "sonnet",
+      "shell": "check-runner",
+      "read_only": true,
+      "write": [],
+      "needs_skills": [
+        "handoff-contract",
+        "money-rules",
+        "verify-falsification"
+      ]
+    },
+    "doc-steward": {
+      "purpose": "Owns canon, decision records, and skill caches mirroring canon. Propagates adjudicated decisions across documents, maintains cross-document consistency, writes missing canon, and increments versions; never makes product decisions.",
+      "tracks": [
+        "web-saas",
+        "mobile-expo"
+      ],
+      "placeholders": [
+        "ADR_DIR",
+        "CACHE_MAP",
+        "CACHE_SKILL",
+        "CANON_PATHS",
+        "DECISION_LOG",
+        "LOCKED_STATUS",
+        "MIGRATIONS_DIR",
+        "PRECEDENCE",
+        "PROJECT"
+      ],
+      "why": "Owns canon, decision records, and skill caches mirroring canon. Propagates adjudicated decisions across documents, maintains cross-document consistency, writes missing canon, and increments versions; never makes product decisions.",
+      "model": "opus",
+      "shell": "none",
+      "read_only": false,
+      "write": [
+        "docs/canon/",
+        "docs/decisions/",
+        ".claude/skills/<CACHE_SKILL>/SKILL.md"
+      ],
+      "deny": [
+        "docs/tasks/",
+        "src/",
+        "app/",
+        "supabase/",
+        "modules/",
+        "e2e/",
+        ".claude/agents/",
+        ".claude/hooks/",
+        "CLAUDE.md",
+        "package.json",
+        "<MIGRATIONS_DIR>/"
+      ],
+      "needs_skills": [
+        "canon-lookup",
+        "handoff-contract"
+      ]
+    },
+    "domain-engineer": {
+      "purpose": "Owns the pure deterministic core (domain and application): business rules, money arithmetic, commands, use cases, and ports, separated from UI and persistence and covered by tests, including permanent golden regression fixtures.",
+      "tracks": [
+        "web-saas",
+        "mobile-expo"
+      ],
+      "placeholders": [
+        "CANON_PATHS",
+        "CHECK_COMMAND",
+        "DB",
+        "DOMAIN_PATHS",
+        "MIGRATIONS_DIR",
+        "PROJECT",
+        "TESTS_DIR"
+      ],
+      "why": "Owns the pure deterministic core (domain and application): business rules, money arithmetic, commands, use cases, and ports, separated from UI and persistence and covered by tests, including permanent golden regression fixtures.",
+      "model": "opus",
+      "shell": "check-runner",
+      "read_only": false,
+      "write": [
+        "src/domain/",
+        "src/application/"
+      ],
+      "deny": [
+        "src/infrastructure/",
+        "src/features/",
+        "src/ui/",
+        "src/composition/",
+        "app/",
+        "e2e/",
+        "<MIGRATIONS_DIR>/",
+        "docs/",
+        ".claude/",
+        "package.json",
+        "package-lock.json",
+        "bun.lockb",
+        "pnpm-lock.yaml",
+        "yarn.lock",
+        "app.json"
+      ],
+      "needs_skills": [
+        "handoff-contract",
+        "money-rules"
+      ]
+    },
+    "persistence-dev": {
+      "purpose": "Owns src/infrastructure/ in a local-first Expo app: expo-sqlite startup, numbered forward-only migrations, repository implementations behind domain ports, transactions, export/backup, and boundary Zod validation. Never performs money arithmetic or defines ports.",
+      "tracks": [
+        "mobile-expo"
+      ],
+      "placeholders": [
+        "CANON_PATHS",
+        "CHECK_COMMAND",
+        "DB",
+        "MIGRATIONS_DIR",
+        "PROJECT"
+      ],
+      "why": "The source definitions share the same role: SQLite as the sole authority, numbered migrations, boundary Zod validation, no money arithmetic, the same test coverage, and the same turn discipline.",
+      "model": "sonnet",
+      "shell": "check-runner",
+      "read_only": false,
+      "write": [
+        "src/infrastructure/"
+      ],
+      "deny": [
+        "src/domain/",
+        "src/application/",
+        "app/",
+        "src/features/",
+        "src/ui/",
+        "src/composition/",
+        "docs/",
+        ".claude/",
+        "package.json",
+        "android/",
+        "ios/"
+      ],
+      "needs_skills": [
+        "handoff-contract",
+        "money-rules"
+      ]
+    },
+    "kids-compliance": {
+      "purpose": "Non-waivable compliance reviewer for products aimed at children: COPPA/GDPR-K/local child law, kids store policy, parental-gate coverage, paywall honesty and dark patterns, age-appropriateness — audits and blocks, never implements and never decides.",
+      "tracks": [
+        "web-saas",
+        "mobile-expo"
+      ],
+      "placeholders": [
+        "AGE_BAND",
+        "CANON_PATHS",
+        "DECISION_LOG",
+        "DOCS_ROOT",
+        "MONEY_PATHS",
+        "OWNERS",
+        "PROJECT",
+        "QA_AGENT",
+        "REPORT_LANGUAGE",
+        "RISK_CLASS"
+      ],
+      "why": "Non-waivable compliance reviewer for products aimed at children: COPPA/GDPR-K/local child law, kids store policy, parental-gate coverage, paywall honesty and dark patterns, age-appropriateness — audits and blocks, never implements and ne...",
+      "model": "opus",
+      "shell": "none",
+      "read_only": false,
+      "write": [
+        "docs/compliance/"
+      ],
+      "deny": [
+        ".claude/",
+        "docs/tasks/",
+        "docs/design/",
+        "src/",
+        "app/"
+      ],
+      "needs_skills": [
+        "handoff-contract",
+        "store-compliance"
+      ]
+    },
+    "game-designer": {
+      "purpose": "Design author and canon owner: writes testable system specifications, costed ideas, tuning notes, and diagnoses in docs/design. Proposes canon changes and is the only agent applying already-made human decisions to BRIEF. Never writes code/art or promotes status labels.",
+      "tracks": [
+        "godot-game",
+        "unreal-game"
+      ],
+      "placeholders": [
+        "ARCH_FORBIDDEN",
+        "CANON_PATHS",
+        "DECISION_LOG",
+        "DOCS_ROOT",
+        "ENGINE",
+        "PROJECT",
+        "RESEARCH_DIR",
+        "RULES_PATHS"
+      ],
+      "why": "Design author and canon owner: writes testable system specifications, costed ideas, tuning notes, and diagnoses in docs/design. Proposes canon changes and is the only agent applying already-made human decisions to BRIEF. Never writes cod...",
+      "model": "opus",
+      "shell": "none",
+      "read_only": false,
+      "write": [
+        "docs/design/",
+        "docs/coordination/BRIEF.md",
+        "docs/tasks/DECISIONS.md"
+      ],
+      "deny": [
+        "docs/design/art/",
+        "docs/research/",
+        "docs/coordination/STATE.md",
+        "docs/qa/",
+        "outputs/",
+        "CLAUDE.md",
+        "AGENTS.md"
+      ],
+      "needs_skills": [
+        "canon-lookup",
+        "handoff-contract",
+        "propose-change"
+      ]
+    },
+    "game-feel-engineer": {
+      "purpose": "Owns presentation (camera, animation, hit-stop/time dilation, VFX, audio, haptics, HUD) reacting to outcomes decided by another role; never changes rules, gameplay numbers, or outcomes.",
+      "tracks": [
+        "godot-game",
+        "unreal-game"
+      ],
+      "placeholders": [
+        "CANON_PATHS",
+        "CHECK_COMMAND",
+        "DEV_DIR",
+        "ENGINE",
+        "GAMEPLAY_PATHS",
+        "HEADLESS_CMD",
+        "PRESENTATION_CONTENT",
+        "PRESENTATION_PATHS",
+        "PRESENTATION_SRC",
+        "PROJECT",
+        "TESTS_DIR",
+        "UI_SRC"
+      ],
+      "why": "Owns presentation (camera, animation, hit-stop/time dilation, VFX, audio, haptics, HUD) reacting to outcomes decided by another role; never changes rules, gameplay numbers, or outcomes.",
+      "model": "opus",
+      "shell": "dev",
+      "read_only": false,
+      "write": [
+        "<PRESENTATION_SRC>/",
+        "<UI_SRC>/",
+        "<PRESENTATION_CONTENT>/",
+        "<DEV_DIR>/",
+        "<TESTS_DIR>/presentation/"
+      ],
+      "deny": [
+        "<GAMEPLAY_PATHS>/",
+        "<CANON_PATHS>/",
+        ".claude/"
+      ],
+      "needs_skills": [
+        "handoff-contract",
+        "verify-falsification"
+      ]
+    },
+    "qa-gameplay": {
+      "purpose": "Gameplay tester running project checks (headless rules, graphical execution with captures, content, load), reproducing defects with minimal repros and measured evidence, and returning findings to owners; never fixes production code.",
+      "tracks": [
+        "godot-game",
+        "unreal-game"
+      ],
+      "placeholders": [
+        "CANON_PATHS",
+        "CHECK_COMMAND",
+        "ENGINE",
+        "EVIDENCE_DIR",
+        "FAILURE_CASES",
+        "HEADLESS_CMD",
+        "OWNERS",
+        "PROJECT",
+        "TESTS_DIR"
+      ],
+      "why": "Gameplay tester running project checks (headless rules, graphical execution with captures, content, load), reproducing defects with minimal repros and measured evidence, and returning findings to owners; never fixes production code.",
+      "model": "sonnet",
+      "shell": "check-runner",
+      "read_only": false,
+      "write": [
+        "tests/",
+        "Tests/",
+        "docs/qa/",
+        "work/qa/"
+      ],
+      "deny": [
+        "src/",
+        "Source/",
+        "scripts/",
+        "Content/",
+        "assets/",
+        "content/",
+        "project.godot",
+        "docs/",
+        ".claude/"
+      ],
+      "needs_skills": [
+        "handoff-contract",
+        "verify-falsification"
+      ]
+    },
+    "adversarial-player": {
+      "purpose": "Breaks the game loop before human testing: hunts dominant strategies, farming, duplicate rewards, routes/positions that nullify threats, exploitable or unfair threats, profitable save/retry loops, dead ends, and misleading presentation. Names the smallest fix without implementing it.",
+      "tracks": [
+        "godot-game",
+        "unreal-game"
+      ],
+      "placeholders": [
+        "ADVERSARIAL_SKILL",
+        "CANON_PATHS",
+        "CHECK_COMMAND",
+        "ENGINE",
+        "EVIDENCE_DIR",
+        "HEADLESS_CMD",
+        "LOOP",
+        "MULTIPLAYER",
+        "PROJECT",
+        "RULES_PATHS"
+      ],
+      "why": "Breaks the game loop before human testing: hunts dominant strategies, farming, duplicate rewards, routes/positions that nullify threats, exploitable or unfair threats, profitable save/retry loops, dead ends, and misleading presentation. ...",
+      "model": "opus",
+      "shell": "check-runner",
+      "read_only": false,
+      "write": [
+        "work/probes/"
+      ],
+      "deny": [
+        "docs/",
+        "CLAUDE.md",
+        ".claude/",
+        "work/",
+        "outputs/",
+        ".git/"
+      ],
+      "needs_skills": [
+        "handoff-contract"
+      ]
+    },
+    "art-director": {
+      "purpose": "Owns project visual, motion, and sound identity: writes the thesis (DIRECTION.md), element sheets, shot lists, asset manifests with origin/license, and executable briefs. Judges actual captures against written direction with readability verdicts. Never implements or generates images.",
+      "tracks": [
+        "godot-game",
+        "unreal-game"
+      ],
+      "placeholders": [
+        "ASSET_POLICY",
+        "CANON_PATHS",
+        "CONTENT_BOUNDS",
+        "ENGINE",
+        "EVIDENCE_DIR",
+        "FRAMINGS",
+        "OWNERS",
+        "PROJECT",
+        "QA_AGENT",
+        "RENDER_TIER"
+      ],
+      "why": "Owns project visual, motion, and sound identity: writes the thesis (DIRECTION.md), element sheets, shot lists, asset manifests with origin/license, and executable briefs. Judges actual captures against written direction with readability ...",
+      "model": "opus",
+      "shell": "none",
+      "read_only": false,
+      "write": [
+        "docs/art/",
+        ".claude/skills/visual-identity/"
+      ],
+      "deny": [
+        "docs/coordination/",
+        "docs/design/",
+        "Source/",
+        "Content/",
+        "Assets/",
+        "scripts/",
+        "outputs/",
+        "work/",
+        ".codex/",
+        ".agents/",
+        "AGENTS.md",
+        "CLAUDE.md",
+        ".claude/agents/",
+        ".claude/hooks/"
+      ],
+      "needs_skills": [
+        "handoff-contract",
+        "visual-identity"
+      ]
+    },
+    "audio-designer": {
+      "purpose": "Sole sound owner: translates semantic gameplay events into effects, layered ambience, surface footsteps, and state signatures; maintains buses, mix, attenuation, and spatialization. Produces only original sound through synthesis or user recordings. The event owner decides when an event occurs; this role decides its sound. Never judges listening quality; delivers measurements and explicitly requests human listening tests.",
+      "tracks": [
+        "godot-game",
+        "unreal-game"
+      ],
+      "placeholders": [
+        "API_REF",
+        "AUDIO_PATHS",
+        "CANON_PATHS",
+        "CHECK_COMMAND",
+        "DOCS_ROOT",
+        "ENGINE",
+        "ENGINE_CRAFT_SKILL",
+        "HEADLESS_CMD",
+        "OWNERS",
+        "PROCEDENCIA_DOC",
+        "PROJECT",
+        "SOUND_MAP_DOC",
+        "TESTS_DIR"
+      ],
+      "why": "Sole sound owner: translates semantic gameplay events into effects, layered ambience, surface footsteps, and state signatures; maintains buses, mix, attenuation, and spatialization. Produces only original sound through synthesis or user ...",
+      "model": "sonnet",
+      "shell": "dev",
+      "read_only": false,
+      "write": [
+        "<AUDIO_PATHS>",
+        "<SOUND_MAP_DOC>",
+        "<PROCEDENCIA_DOC>",
+        "<API_REF>",
+        "work/"
+      ],
+      "deny": [
+        "project.godot",
+        ".claude/",
+        "Compilar/rodar"
+      ],
+      "needs_skills": [
+        "handoff-contract"
+      ]
+    },
+    "level-designer": {
+      "purpose": "Authors playable space, circulation, teaching intent, and difficulty curves as versioned data used to generate maps/scenes. Validates each level headlessly before handoff. Never changes rules, AI, materials, camera, or system code; a new mechanic is a proposal, not a level file.",
+      "tracks": [
+        "godot-game",
+        "unreal-game"
+      ],
+      "placeholders": [
+        "CANON_PATHS",
+        "CHECK_COMMAND",
+        "DOCS_ROOT",
+        "ENGINE",
+        "ENGINE_CRAFT_SKILL",
+        "GENERATED_FILES",
+        "HEADLESS_CMD",
+        "PROJECT",
+        "QA_AGENT",
+        "SCALE_SPEC"
+      ],
+      "why": "Authors playable space, circulation, teaching intent, and difficulty curves as versioned data used to generate maps/scenes. Validates each level headlessly before handoff. Never changes rules, AI, materials, camera, or system code; a new...",
+      "model": "sonnet",
+      "shell": "check-runner",
+      "read_only": false,
+      "write": [
+        "content/levels/",
+        "content/maps/",
+        "content/environment/",
+        "scripts/world/",
+        "docs/level-design/"
+      ],
+      "deny": [
+        "content/generated/",
+        "docs/canon/",
+        "src/",
+        "tests/"
+      ],
+      "needs_skills": [
+        "handoff-contract",
+        "verify-falsification"
+      ]
+    },
+    "architecture-reviewer": {
+      "purpose": "Read-only reviewer auditing inseparable STRUCTURE (layers, single ownership, data versus literals, frame cost, headless testability, engine APIs) and CONTRACT (silent status promotion, invented constants, buried tunables, authority, scope drift, silent regressions) on a task diff. Names the smallest fix without implementing it.",
+      "tracks": [
+        "godot-game",
+        "unreal-game"
+      ],
+      "placeholders": [
+        "CANON_PATHS",
+        "CHECK_COMMAND",
+        "ENGINE",
+        "GAMEPLAY_PATHS",
+        "HEADLESS_CMD",
+        "OWNERS",
+        "PROJECT",
+        "REPORT_LANGUAGE",
+        "RULES_PATHS",
+        "SCOPE_EXCLUSIONS",
+        "TUNABLE_MARK"
+      ],
+      "why": "Read-only reviewer auditing inseparable STRUCTURE (layers, single ownership, data versus literals, frame cost, headless testability, engine APIs) and CONTRACT (silent status promotion, invented constants, buried tunables, authority, scop...",
+      "model": "opus",
+      "shell": "git-read",
+      "read_only": true,
+      "write": [],
+      "deny": [
+        "TASK/BACKLOG/STATE"
+      ],
+      "needs_skills": [
+        "handoff-contract",
+        "review-architecture"
+      ]
+    },
+    "game-research-analyst": {
+      "purpose": "Brings external evidence from stores, reviews, forums, wikis, postmortems, and official rule/license sources about comparable games. Returns dated reports in docs/research as candidates for human adjudication, never decisions, tasks, or canon.",
+      "tracks": [
+        "godot-game",
+        "unreal-game"
+      ],
+      "placeholders": [
+        "CANON_PATHS",
+        "COMPARABLES",
+        "DECISION_LOG",
+        "ENGINE",
+        "PROJECT",
+        "RESEARCH_DIR",
+        "STORE"
+      ],
+      "why": "Brings external evidence from stores, reviews, forums, wikis, postmortems, and official rule/license sources about comparable games. Returns dated reports in docs/research as candidates for human adjudication, never decisions, tasks, or ...",
+      "model": "opus",
+      "shell": "none",
+      "read_only": false,
+      "write": [
+        "<RESEARCH_DIR>/"
+      ],
+      "deny": [
+        "docs/tasks/",
+        ".claude/"
+      ],
+      "needs_skills": [
+        "handoff-contract",
+        "research-protocol"
+      ]
+    },
+    "design-librarian": {
+      "purpose": "Cheap read-only canon lookup: answers \"what does canon say about X, at what status\" by reading at most 3 sections under a hard tool-call budget, and returns a ≤300-word sourced block (file § section, verbatim status label, verbatim numeric constraints, conflicts, gaps) so no other agent loads a 10k-token design document to check one constant.",
+      "tracks": [
+        "godot-game",
+        "unreal-game"
+      ],
+      "placeholders": [
+        "CANON_PATHS",
+        "CANON_STATUSES",
+        "ENGINE",
+        "PROJECT",
+        "SCOPE_GATE"
+      ],
+      "why": "Cheap read-only canon lookup: answers \"what does canon say about X, at what status\" by reading at most 3 sections under a hard tool-call budget, and returns a ≤300-word sourced block (file § section, verbatim status label, verbatim numer...",
+      "model": "sonnet",
+      "shell": "none",
+      "read_only": true,
+      "write": [],
+      "needs_skills": [
+        "canon-lookup"
+      ]
+    },
+    "design-auditor": {
+      "purpose": "Audits the design canon itself — not the code that implements it. Hunts cross-document contradictions, unsettled decisions used as premises, mislabelled TUNABLEs, dead ends, risk concentrations, degenerate or empty choices, content-production burden, engine/scope traps and untestable specs; then triages every in-scope open item against the current milestone. Produces a dated, numbered, human-adjudicable audit file. Never decides an OPEN question, never edits canon, never invents a mechanic, never audits code.",
+      "tracks": [
+        "godot-game",
+        "unreal-game"
+      ],
+      "placeholders": [
+        "AUDIT_DIR",
+        "CANON_OWNER",
+        "CANON_PATHS",
+        "ENGINE",
+        "MILESTONE",
+        "PROJECT",
+        "REPORT_LANGUAGE"
+      ],
+      "why": "Audits the design canon itself — not the code that implements it. Hunts cross-document contradictions, unsettled decisions used as premises, mislabelled TUNABLEs, dead ends, risk concentrations, degenerate or empty choices, content-produ...",
+      "model": "opus",
+      "shell": "none",
+      "read_only": false,
+      "write": [
+        "docs/design/audits/"
+      ],
+      "deny": [
+        "docs/game-design-bible/",
+        "docs/design/",
+        "docs/tasks/",
+        "game/",
+        "src/",
+        "tests/",
+        ".claude/"
+      ],
+      "needs_skills": [
+        "canon-lookup",
+        "handoff-contract"
+      ]
+    },
+    "rules-engineer": {
+      "purpose": "Owns the pure rules layer (simulation, economy, pacing, threats, save/migration), with every balancing number expressed as named data, separate from the loop/scene owner.",
+      "tracks": [
+        "godot-game",
+        "unreal-game"
+      ],
+      "placeholders": [
+        "CANON_PATHS",
+        "CHECK_COMMAND",
+        "COORDINATE_PATHS",
+        "ENGINE",
+        "HEADLESS_CMD",
+        "LOOP_ENGINEER",
+        "LOOP_ENTRY_FILE",
+        "PROJECT",
+        "RULES_TRUTH",
+        "TEST_PATHS"
+      ],
+      "why": "Owns the pure rules layer (simulation, economy, pacing, threats, save/migration), with every balancing number expressed as named data, separate from the loop/scene owner.",
+      "model": "opus",
+      "shell": "check-runner",
+      "read_only": false,
+      "write": [
+        "<CANON_PATHS>/",
+        "<TEST_PATHS>/",
+        "work/"
+      ],
+      "deny": [
+        "<COORDINATE_PATHS>",
+        "<LOOP_ENTRY_FILE>",
+        ".claude/"
+      ],
+      "needs_skills": [
+        "handoff-contract",
+        "verify-falsification"
+      ]
+    },
+    "tech-artist": {
+      "purpose": "Executes art direction in the engine through materials, shaders, lighting, environment, post-processing, particles, art meshes, and transform animation. Uses procedural/original work, measures frame cost before and after, and never changes rules, layout, navigation, or HUD.",
+      "tracks": [
+        "godot-game",
+        "unreal-game"
+      ],
+      "placeholders": [
+        "ART_PATHS",
+        "CANON_PATHS",
+        "CHECK_COMMAND",
+        "ENGINE",
+        "ENGINE_CRAFT_SKILL",
+        "EVIDENCE_DIR",
+        "HEADLESS_CMD",
+        "PROGRESS_PATH",
+        "PROJECT",
+        "RENDER_TIER"
+      ],
+      "why": "Executes art direction in the engine through materials, shaders, lighting, environment, post-processing, particles, art meshes, and transform animation. Uses procedural/original work, measures frame cost before and after, and never chang...",
+      "model": "opus",
+      "shell": "dev",
+      "read_only": false,
+      "write": [
+        "<ART_PATHS>",
+        "<EVIDENCE_DIR>",
+        "<PROGRESS_PATH>"
+      ],
+      "needs_skills": [
+        "handoff-contract",
+        "verify-falsification"
+      ]
+    },
+    "godot-gameplay-engineer": {
+      "purpose": "Owns Godot's middle layer: translates input into intent and events into state/scene changes (node tree, signals, _physics_process, HUD, damage/economy/save/retry) without changing the truth or presentation layers.",
+      "tracks": [
+        "godot-game"
+      ],
+      "placeholders": [
+        "CANON_PATHS",
+        "CHECK_COMMAND",
+        "ENGINE",
+        "GAMEPLAY_PATHS",
+        "HEADLESS_CMD",
+        "PRESENTATION_PATHS",
+        "PROJECT",
+        "REPORT_LANGUAGE",
+        "SIM_PATHS",
+        "TRUTH_RULE"
+      ],
+      "why": "Owns Godot's middle layer: translates input into intent and events into state/scene changes (node tree, signals, _physics_process, HUD, damage/economy/save/retry) without changing the truth or presentation layers.",
+      "model": "opus",
+      "shell": "dev",
+      "read_only": false,
+      "write": [
+        "<GAMEPLAY_PATHS>/",
+        "scenes/",
+        "project.godot",
+        "tests/"
+      ],
+      "deny": [
+        "<SIM_PATHS>/",
+        "<PRESENTATION_PATHS>/",
+        "shared/",
+        "<CANON_PATHS>/",
+        ".claude/",
+        "addons/",
+        ".godot/"
+      ],
+      "needs_skills": [
+        "handoff-contract",
+        "verify-falsification"
+      ]
+    },
+    "unreal-gameplay-engineer": {
+      "purpose": "Owns Unreal gameplay in C++ (Blueprint only where unavoidable): first-person character, aim/range/occlusion interaction, player actions and variants, projectiles, GameMode/GameState, versioned saves, Config, and value DataAssets. Does not own pure rules, AI, maps, presentation, or pipeline/evidence.",
+      "tracks": [
+        "unreal-game"
+      ],
+      "placeholders": [
+        "CANON_PATHS",
+        "CHECK_COMMAND",
+        "DECISION_LOG",
+        "ENGINE",
+        "GAMEPLAY_PATHS",
+        "HEADLESS_CMD",
+        "MODULE",
+        "PROJECT",
+        "QA_AGENT",
+        "RULES_PATHS",
+        "UE_ROOT"
+      ],
+      "why": "Owns Unreal gameplay in C++ (Blueprint only where unavoidable): first-person character, aim/range/occlusion interaction, player actions and variants, projectiles, GameMode/GameState, versioned saves, Config, and value DataAssets. Does no...",
+      "model": "opus",
+      "shell": "dev",
+      "read_only": false,
+      "write": [
+        "<UE_ROOT>/Source/<MODULE>/Gameplay/",
+        "<UE_ROOT>/Source/<MODULE>/Core/",
+        "<UE_ROOT>/Content/Blueprints/",
+        "<UE_ROOT>/Content/Data/",
+        "<UE_ROOT>/Config/DefaultGame.ini",
+        "<UE_ROOT>/Config/DefaultInput.ini",
+        "work/backup/"
+      ],
+      "deny": [
+        "<UE_ROOT>/Config/DefaultEngine.ini",
+        "Tests/",
+        "Binaries/",
+        ".claude/"
+      ],
+      "needs_skills": [
+        "handoff-contract",
+        "unreal-ops",
+        "verify-falsification"
+      ]
+    },
+    "unreal-pipeline-engineer": {
+      "purpose": "Owns the engine pipeline: makes the project compile, run headlessly, verify, and package through one command, with reliable exit codes and a fixed log path. Never changes gameplay, AI, world, art, or audio.",
+      "tracks": [
+        "unreal-game"
+      ],
+      "placeholders": [
+        "CANON_PATHS",
+        "CHECK_COMMAND",
+        "DECISION_LOG",
+        "DELIVERY_DIR",
+        "ENGINE",
+        "HEADLESS_CMD",
+        "PROJECT",
+        "TASK_LOG"
+      ],
+      "why": "Owns the engine pipeline: makes the project compile, run headlessly, verify, and package through one command, with reliable exit codes and a fixed log path. Never changes gameplay, AI, world, art, or audio.",
+      "model": "opus",
+      "shell": "dev",
+      "read_only": false,
+      "write": [
+        "<PROJECT>.uproject",
+        "Source/<PROJECT>/<PROJECT>.Build.cs",
+        "Source/<PROJECT>/Testing/",
+        "Scripts/",
+        "Tests/",
+        "Config/DefaultEngine.ini",
+        ".gitignore",
+        "<DELIVERY_DIR>/",
+        "<TASK_LOG>"
+      ],
+      "deny": [
+        "Content/",
+        "Config/DefaultGame.ini",
+        "Config/DefaultInput.ini",
+        "docs/",
+        "CLAUDE.md",
+        ".claude/"
+      ],
+      "needs_skills": [
+        "handoff-contract",
+        "unreal-ops",
+        "verify-gameplay"
+      ]
+    }
+  },
+  "skills": {
+    "verify-falsification": {
+      "purpose": "Four engine-agnostic rules that make a green check suite mean something: sabotage-and-see-RED, independent expected values, positive control before any \"0 failures\" claim, never bend production code to the harness.",
+      "tracks": [
+        "*"
+      ],
+      "placeholders": [
+        "CANON_PATHS",
+        "CHECK_COMMAND",
+        "ENGINE"
+      ],
+      "why": "A skill is a document loaded by other agents, never an actor: it writes nothing, runs nothing, and must not widen the scope of whatever agent carries it."
+    },
+    "agent-forge": {
+      "purpose": "Standards, house format, self-verifying registration checklist, and safety rules for the lead to create, review, retire agents/skills, and apply scopes in scopes.json.",
+      "tracks": [
+        "*"
+      ],
+      "placeholders": [
+        "CANON_PATHS",
+        "DECISION_LOG",
+        "PROJECT",
+        "REPORT_LANGUAGE",
+        "RISK_CLASS"
+      ],
+      "why": "Loaded by the lead, which writes definitions, hooks, scopes.json, settings, and task notes; never production code, canon, or another owner's cache. A lead that implements stops verifying."
+    },
+    "handoff-contract": {
+      "purpose": "Fixed task-close block: result, deliverables, criteria with evidence labeled by layer, decisions, and next step, in roughly 300 tokens.",
+      "tracks": [
+        "*"
+      ],
+      "placeholders": [
+        "CAMADAS",
+        "CANON_PATHS",
+        "CHECK_COMMAND",
+        "ENGINE",
+        "EVIDENCE_DIR",
+        "INVARIANTES",
+        "MIGRATIONS_DIR",
+        "NOME",
+        "PROJECT",
+        "RISK_CLASS"
+      ],
+      "why": "A skill is a document loaded by agents; it neither executes nor writes independently, so it has no write scope and shell none."
+    },
+    "context-hygiene": {
+      "purpose": "Keeps loaded documents within context budgets: what grows, how to measure it, and how to archive/split without losing history.",
+      "tracks": [
+        "*"
+      ],
+      "placeholders": [
+        "CANON_PATHS",
+        "DECISION_LOG",
+        "PROJECT"
+      ],
+      "why": "Hygiene moves prose between documents. Canon has its own owner; changing agents, skills, or hooks belongs to agent-forge rather than archival work."
+    },
+    "task-protocol": {
+      "purpose": "Defines, gates, sequences and closes TASK-NNN work: Definition of Ready, risk classes with close gates, acceptance-criteria standards, Definition of Done, one commit per task.",
+      "tracks": [
+        "*"
+      ],
+      "placeholders": [
+        "CANON_PATHS",
+        "CHECK_COMMAND",
+        "ENGINE",
+        "MIGRATIONS_DIR",
+        "PROJECT",
+        "QA_AGENT",
+        "RISK_CLASS"
+      ],
+      "why": "Defines, gates, sequences and closes TASK-NNN work: Definition of Ready, risk classes with close gates, acceptance-criteria standards, Definition of Done, one commit per task."
+    },
+    "repo-ops": {
+      "purpose": "Lead Git, migration, and machine-command practices: open a session, inspect untracked files without deleting them, make one scoped commit per DONE task, push at closing, never rewrite history, and identify actions still requiring human authorization.",
+      "tracks": [
+        "*"
+      ],
+      "placeholders": [
+        "CANON_PATHS",
+        "CHECK_COMMAND",
+        "DEFAULT_BRANCH",
+        "ENGINE",
+        "GENERATED_FILES",
+        "IGNORED_DIRS",
+        "MIGRATIONS_DIR",
+        "PROJECT",
+        "REMOTE_URL",
+        "REPORT_LANGUAGE"
+      ],
+      "why": "Loaded by the lead, which coordinates and commits without producing code or design. Writes are limited to docs/, .claude/, and root Markdown; docs/canon/ is denied because it has a separate owner."
+    },
+    "propose-change": {
+      "purpose": "Single path from evidence to a canon edit: written proposal, dated human decision, application only by the document owner.",
+      "tracks": [
+        "*"
+      ],
+      "placeholders": [
+        "CANON_OWNER",
+        "CANON_PATHS",
+        "DECISION_LOG",
+        "DOCS_ROOT",
+        "PROJECT"
+      ],
+      "why": "The proposer writes proposals and disposable spikes, never canon or the decision log. Separating proposal from application is the whole rule."
+    },
+    "canon-lookup": {
+      "purpose": "Consults project authority by section within a budget, classifying findings without absorbing stale facts.",
+      "tracks": [
+        "*"
+      ],
+      "placeholders": [
+        "ARCHIVE_DIR",
+        "CANON_OWNER",
+        "CANON_PATHS",
+        "CHECK_COMMAND",
+        "DECISION_LOG",
+        "PROJECT",
+        "RESEARCH_DIRS",
+        "STATE_DOC"
+      ],
+      "why": "Pure reading skill: consults canon and returns a CONTEXT block."
+    },
+    "money-rules": {
+      "purpose": "Canonical money-rule cache for every agent calculating, rounding, splitting, storing, granting, charging, displaying, or testing money: integer cents, one arithmetic module, a locked pipeline, one idempotent granting authority, immutable entries corrected by reversal, a proposed-to-accepted boundary, and golden fixtures as evidence.",
+      "tracks": [
+        "web-saas",
+        "mobile-expo"
+      ],
+      "placeholders": [
+        "CANON_PATHS",
+        "CHECK_COMMAND",
+        "DB",
+        "GRANT_AUTHORITY",
+        "MIGRATIONS_DIR",
+        "PROJECT",
+        "RISK_CLASS",
+        "TESTS_DIR"
+      ],
+      "why": "Canonical money-rule cache for every agent calculating, rounding, splitting, storing, granting, charging, displaying, or testing money: integer cents, one arithmetic module, a locked pipeline, one idempotent granting authority, immutable..."
+    },
+    "perf-budget": {
+      "purpose": "Defines performance as a small set of measured numbers per user-facing surface (shipped JS, runtime metrics, dependency leakage), with a baseline-and-delta discipline, so \"lighter\" is a measurement with a command behind it and never an impression.",
+      "tracks": [
+        "web-saas",
+        "mobile-expo"
+      ],
+      "placeholders": [
+        "CHECK_COMMAND",
+        "HEAVY_DEPS",
+        "PROJECT",
+        "RUNTIME_METRICS",
+        "SHARED_DIRS",
+        "SURFACES"
+      ],
+      "why": "Defines performance as a small set of measured numbers per user-facing surface (shipped JS, runtime metrics, dependency leakage), with a baseline-and-delta discipline, so \"lighter\" is a measurement with a command behind it and never an i..."
+    },
+    "store-compliance": {
+      "purpose": "Single normative store-compliance cache for mobile-expo: violation classes and verdict format, a closed list of monetization anti-patterns, generated-asset provenance, and a conditional child-audience section (Apple Kids Category, Play Families, COPPA/GDPR-K).",
+      "tracks": [
+        "mobile-expo"
+      ],
+      "placeholders": [
+        "CANON_PATHS",
+        "CHECK_COMMAND",
+        "DECISION_LOG",
+        "DOCS_ROOT",
+        "MONEY_PATHS"
+      ],
+      "why": "Single normative store-compliance cache for mobile-expo: violation classes and verdict format, a closed list of monetization anti-patterns, generated-asset provenance, and a conditional child-audience section (Apple Kids Category, Play F..."
+    },
+    "codex-coexistence": {
+      "purpose": "How Claude agents and Codex share a repository: three-column path ownership, active-run detection, single-source hooks (shim), task-board handoffs, and use of evidence from the other runtime.",
+      "tracks": [
+        "*"
+      ],
+      "placeholders": [
+        "BOARD",
+        "CANON_PATHS",
+        "COORDINATE_PATHS",
+        "DOCS_ROOT",
+        "ENGINE",
+        "EVIDENCE_DIR",
+        "GENERATED_FILES",
+        "PROJECT"
+      ],
+      "why": "How Claude agents and Codex share a repository: three-column path ownership, active-run detection, single-source hooks (shim), task-board handoffs, and use of evidence from the other runtime."
+    },
+    "research-protocol": {
+      "purpose": "Defines external evidence gathering without exhausting context: hard search/page budgets, source ordering by signal density (users/market and platform/dependencies), provenance/citation labels, a fixed report format under <RESEARCH_DIR>/, and research as the project's lowest-authority input that never decides.",
+      "tracks": [
+        "*"
+      ],
+      "placeholders": [
+        "CANON_PATHS",
+        "COMPARABLES",
+        "DECISION_LOG",
+        "PLATFORM_DOCS",
+        "POLICY_PAGES",
+        "PROJECT",
+        "REFS_DIR",
+        "RESEARCH_DIR"
+      ],
+      "why": "Defines external evidence gathering without exhausting context: hard search/page budgets, source ordering by signal density (users/market and platform/dependencies), provenance/citation labels, a fixed report format under <RESEARCH_DIR>/..."
+    },
+    "verify-gameplay": {
+      "purpose": "How QA proves a game change behaves as claimed: risk-proportional evidence, sabotage before trusting green checks, headless and graphical <ENGINE> execution, result-file contracts, in-game captures, and defect reports without fixes.",
+      "tracks": [
+        "godot-game",
+        "unreal-game"
+      ],
+      "placeholders": [
+        "CANON_PATHS",
+        "CHECK_COMMAND",
+        "ENGINE",
+        "EVIDENCE_DIR",
+        "GUI_CMD",
+        "HEADLESS_CMD",
+        "OWNERS",
+        "PROJECT",
+        "QA_DOCS",
+        "RESULT_FILE"
+      ],
+      "why": "Source procedures agree that green checks count only after red was observed; differences come from project-specific commands, engines, paths, contract numbers, and mechanic names."
+    },
+    "adversarial-playtest": {
+      "purpose": "Method for attacking a game loop before human testing: structural probes covering boring optima, optional core skill, input abuse, economy conservation, space/routes, exploitable or theatrical threats, time/save, dead ends, misleading presentation, and failure that teaches nothing. Includes disposable headless probes, a fixed finding format, and a loop-integrity verdict.",
+      "tracks": [
+        "godot-game",
+        "unreal-game"
+      ],
+      "placeholders": [
+        "CANON_PATHS",
+        "CHECK_COMMAND",
+        "ENGINE",
+        "EVIDENCE_DIR",
+        "HEADLESS_CMD",
+        "PROJECT"
+      ],
+      "why": "Method for attacking a game loop before human testing: structural probes covering boring optima, optional core skill, input abuse, economy conservation, space/routes, exploitable or theatrical threats, time/save, dead ends, misleading pr..."
+    },
+    "human-playtest": {
+      "purpose": "Requests, prepares, conducts, and records human testing without wasting the participant's session: when testing is mandatory before DONE, what to observe without asking, five fixed questions plus the session question, a record of at most 80 lines in docs/qa/, and a rule converting findings into tasks.",
+      "tracks": [
+        "godot-game",
+        "unreal-game"
+      ],
+      "placeholders": [
+        "CANON_PATHS",
+        "CHECK_COMMAND",
+        "ENGINE",
+        "HEADLESS_CMD",
+        "PROJECT"
+      ],
+      "why": "Requests, prepares, conducts, and records human testing without wasting the participant's session: when testing is mandatory before DONE, what to observe without asking, five fixed questions plus the session question, a record of at most..."
+    },
+    "review-architecture": {
+      "purpose": "Read-only game architecture review separating STRUCTURE (single owner, rule/scene/presentation boundaries, duplicate formulas, buried numbers, events, saves, frame cost, editor-free testing) from CONTRACT (fidelity to canon status: silent promotion, invented constants, buried tunables, scope drift, silent regressions). Defines findings and both verdicts. Loaded by architecture-reviewer as the complete checklist.",
+      "tracks": [
+        "godot-game",
+        "unreal-game"
+      ],
+      "placeholders": [
+        "CANON_PATHS",
+        "CHECK_COMMAND",
+        "ENGINE",
+        "GAMEPLAY_PATHS",
+        "HEADLESS_CMD",
+        "OWNERS",
+        "PROJECT",
+        "REPORT_LANGUAGE",
+        "RULES_PATHS",
+        "SCOPE_EXCLUSIONS",
+        "TUNABLE_MARK"
+      ],
+      "why": "Read-only game architecture review separating STRUCTURE (single owner, rule/scene/presentation boundaries, duplicate formulas, buried numbers, events, saves, frame cost, editor-free testing) from CONTRACT (fidelity to canon status: silen..."
+    },
+    "unreal-ops": {
+      "purpose": "Defines Unreal build, headless Editor content generation, headless checks, captures, and packaging without locking the build mutex or opening the graphical Editor: commands, flags, result files, passing criteria, and prohibitions.",
+      "tracks": [
+        "unreal-game"
+      ],
+      "placeholders": [
+        "CANON_PATHS",
+        "CHECK_COMMAND",
+        "DOCS_ROOT",
+        "ENGINE",
+        "ENGINE_DIR",
+        "HEADLESS_CMD",
+        "OWNERS",
+        "PROJECT",
+        "UE_ROOT"
+      ],
+      "why": "Defines Unreal build, headless Editor content generation, headless checks, captures, and packaging without locking the build mutex or opening the graphical Editor: commands, flags, result files, passing criteria, and prohibitions."
+    },
+    "visual-identity": {
+      "purpose": "Game visual, motion, effect, and sound doctrine: readability before spectacle, one language per screen, silhouette testing, primary-action phases, visible states, materials/tokens, and capture-verdict protocol. Maintained by art-director and loaded for art, effects, HUD, or sound tasks.",
+      "tracks": [
+        "godot-game",
+        "unreal-game"
+      ],
+      "placeholders": [
+        "CANON_PATHS",
+        "DECISION_LOG",
+        "ENGINE",
+        "EVIDENCE_DIR",
+        "FRAMINGS",
+        "PROJECT",
+        "QA_AGENT",
+        "TOKENS_DIR"
+      ],
+      "why": "Game visual, motion, effect, and sound doctrine: readability before spectacle, one language per screen, silhouette testing, primary-action phases, visible states, materials/tokens, and capture-verdict protocol. Maintained by art-director..."
+    },
+    "test-driven-development": {
+      "purpose": "Red-green-refactor as a mandatory gate: no production code without a test that failed first.",
+      "tracks": [
+        "*"
+      ],
+      "placeholders": [],
+      "why": "Adapted methodology; see THIRD_PARTY_NOTICES.md."
+    },
+    "systematic-debugging": {
+      "purpose": "Root-cause investigation in four mandatory phases before any fix is proposed.",
+      "tracks": [
+        "*"
+      ],
+      "placeholders": [],
+      "why": "Adapted methodology; see THIRD_PARTY_NOTICES.md."
+    },
+    "brainstorming": {
+      "purpose": "Classifies requests as spike/bounded/architectural and requires explicit approval before implementation, with ceremony proportional to scope.",
+      "tracks": [
+        "*"
+      ],
+      "placeholders": [],
+      "why": "Adapted methodology; see THIRD_PARTY_NOTICES.md."
+    }
+  }
+}

@@ -1,0 +1,6 @@
+description = "Start or resume Brainforge with a short conversation."
+prompt = """
+Follow the shared Brainforge workflow below. This command is running in Gemini CLI.
+Use the user's language and resume saved context when present.
+@{onboarding/SETUP.md}
+"""

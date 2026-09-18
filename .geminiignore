@@ -1,0 +1,33 @@
+# Keep common private and generated files hidden in downloaded folders too.
+# Gemini CLI combines these patterns after .gitignore in Git repositories.
+node_modules/
+.DS_Store
+*.log
+.env
+.env.local
+.env.*
+!.env.example
+!.env.sample
+respostas.json
+answers.json
+answers.local.json
+.brainforge-tmp/
+.audit-tmp/
+coverage/
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Git still ignores all of workspace/. Gemini may read only its working memory
+# and direct Markdown deliverables, without changing global ignore settings.
+!/workspace/
+/workspace/*
+!/workspace/context.md
+!/workspace/preferences.md
+!/workspace/team.md
+!/workspace/next.md
+!/workspace/output/
+/workspace/output/*
+!/workspace/output/*.md
+/workspace/output/.*

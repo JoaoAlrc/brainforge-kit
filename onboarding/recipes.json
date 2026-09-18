@@ -1,0 +1,57 @@
+[
+  {
+    "id": "business-website",
+    "title": "Business website",
+    "description": "A business website with a clear visitor journey and contact handover.",
+    "skills": [
+      "solution-design",
+      "web-interface",
+      "brand-copy",
+      "content-seo"
+    ],
+    "workflow": "Clarify the audience, offer, desired visitor action and available facts. Decide whether a backend is needed. Establish content and visual direction before implementation. Build the smallest complete journey. Verify links, mobile layout, form behavior, accessibility and operational handover. Never represent a mock form as a working integration."
+  },
+  {
+    "id": "working-application",
+    "title": "Working application",
+    "description": "An application with user journeys, data, permissions and verified outcomes.",
+    "skills": [
+      "product-lifecycle",
+      "solution-design",
+      "web-interface"
+    ],
+    "workflow": "Discover the primary user and outcome in plain language. Inspect existing code or explicitly establish that the project is empty. Define a minimal data and permission contract. Implement one complete journey before expanding. Test persistence, invalid input, authorization and failure states. Review actual behavior and report remaining launch prerequisites. Payments and production integrations need separate configuration and authorized actions."
+  },
+  {
+    "id": "playable-game",
+    "title": "Playable game",
+    "description": "A playable game slice selected around controls, perspective and target devices.",
+    "skills": [
+      "solution-design",
+      "creative-production"
+    ],
+    "workflow": "Ask about the player's actions, camera perspective, 2D or 3D expectations and target device only when unclear. Select an engine using actual requirements and available tools. Implement the smallest playable loop with restart and clear feedback. Verify controls, win/loss states and performance using available runtime tools. Distinguish a design document from a playable build and placeholder assets from licensed final assets."
+  },
+  {
+    "id": "reliable-automation",
+    "title": "Reliable automation",
+    "description": "A repeatable operation with real inputs, observable results and failure recovery.",
+    "skills": [
+      "solution-design",
+      "product-lifecycle"
+    ],
+    "workflow": "Identify the trigger, source, destination and permitted actions. Inspect a real or clearly labeled sample input. Design duplicate handling, retries, logs and an off switch. Test a successful run, repeated input and unavailable dependency. Scheduling and external messages must be explicitly authorized; preparing a script does not activate a schedule."
+  },
+  {
+    "id": "content-campaign",
+    "title": "Content campaign",
+    "description": "A coherent campaign from business facts through copy, visual production and measurement.",
+    "skills": [
+      "market-strategy",
+      "brand-copy",
+      "creative-production",
+      "campaign-analysis"
+    ],
+    "workflow": "Collect audience, offer, voice, approved facts, channels and objective once. Separate evidence from assumptions. Select original content structures by communication goal. Prepare copy, visual specifications and actual files when production tools are available. Review readability, factual support, rights and calls to action. Define measurement without invented conversion rates. Publication and ad spend remain separately authorized actions. Optional purchased packs are separate inputs: use them only when supplied and readable; general creation never requires a pack."
+  }
+]

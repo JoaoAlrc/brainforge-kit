@@ -1,0 +1,10 @@
+{
+  "id": "brainforge-kit",
+  "version": "0.2.0",
+  "schemaVersion": 1,
+  "catalogSchemaVersion": 1,
+  "entrypoint": "onboarding/SETUP.md",
+  "modelPolicy": "runtime/model-policy.mjs",
+  "includesPaidPacks": false,
+  "includesDesktop": false
+}

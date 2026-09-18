@@ -1,0 +1,20 @@
+{
+  "$comment": "Merge the 'hooks' block into .claude/settings.json (replace any PreToolUse entries that call validate-write-scope / validate-bash-scope). One hook, one config, both OSes. Keep existing PostToolUse entries. Commands use $CLAUDE_PROJECT_DIR (Claude Code sets this to the project root for every hook invocation, per https://code.claude.com/docs/en/hooks#reference-scripts-by-path) instead of a bare relative path: a relative path resolves against the CURRENT working directory, which is not always the project root (a subdirectory, a worktree). Found by an external audit (2026-09-17): the old relative command run from a subdirectory produced MODULE_NOT_FOUND and the hook silently never reached its permission decision.",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "^(Edit|Write|MultiEdit|NotebookEdit|Bash|PowerShell)$",
+        "hooks": [
+          { "type": "command", "command": "node \"$CLAUDE_PROJECT_DIR/.claude/hooks/scope-guard.mjs\"" }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          { "type": "command", "command": "node \"$CLAUDE_PROJECT_DIR/.claude/hooks/context-budget.mjs\" --brief" }
+        ]
+      }
+    ]
+  }
+}

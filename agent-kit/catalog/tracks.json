@@ -1,0 +1,231 @@
+{
+  "$comment": "Tracks define starting teams by project type, merged into catalog.json by bootstrap/merge-catalog.mjs. The interview removes roles with no upcoming work; an idle role adds context cost without value.",
+  "core": {
+    "why": "Every project needs coordination, context hygiene, and a handoff contract, from games to SaaS.",
+    "agents": [
+      "scrum-master",
+      "docs-janitor",
+      "task-author"
+    ],
+    "skills": [
+      "agent-forge",
+      "context-hygiene",
+      "handoff-contract",
+      "repo-ops",
+      "task-protocol",
+      "verify-falsification",
+      "brainstorming",
+      "test-driven-development",
+      "systematic-debugging"
+    ],
+    "opcionais": {
+      "docs-librarian": "when docs/ grows beyond roughly 20 files and answering small questions requires broad reading",
+      "spec-auditor": "when written specifications could silently diverge from implementation",
+      "context-scout": "when finding the right file is itself significant work",
+      "code-reviewer": "when another contributor starts writing code; includes regression review",
+      "canon-lookup": "when a binding body of reference material exists: product bible, brief, canon, or product docs",
+      "propose-change": "when an agent needs to propose a change to a document it does not own"
+    }
+  },
+  "tracks": {
+    "web-saas": {
+      "lead": "scrum-master",
+      "why": "Web app with a backend: TanStack/Next + Supabase/Postgres, public pages and an authenticated area.",
+      "agents": [
+        "app-dev",
+        "platform-dev",
+        "landing-dev",
+        "qa-web",
+        "ux-reviewer",
+        "design-steward",
+        "code-reviewer"
+      ],
+      "skills": [
+        "perf-budget"
+      ],
+      "condicionais": {
+        "handles money": [
+          "commerce-dev",
+          "money-rules",
+          "security-reviewer"
+        ],
+        "handles PII or sensitive data": [
+          "security-reviewer",
+          "doc-steward"
+        ],
+        "sells to children": [
+          "kids-compliance",
+          "store-compliance"
+        ],
+        "conversion funnel matters": [
+          "conversion-reviewer",
+          "market-researcher"
+        ]
+      },
+      "check_runners": [
+        "npm run build",
+        "npm test",
+        "npx tsc --noEmit",
+        "npm run lint"
+      ],
+      "global_deny": [
+        "src/routeTree.gen.ts",
+        "src/integrations/supabase/types.ts",
+        "package-lock.json",
+        "vite.config.ts",
+        "components.json",
+        "eslint.config.js"
+      ]
+    },
+    "mobile-expo": {
+      "lead": "scrum-master",
+      "why": "React Native app with Expo, usually with a Supabase backend and its own domain logic.",
+      "agents": [
+        "mobile-dev",
+        "backend-dev",
+        "domain-engineer",
+        "qa-mobile",
+        "ux-reviewer",
+        "design-steward",
+        "code-reviewer"
+      ],
+      "skills": [
+        "store-compliance"
+      ],
+      "condicionais": {
+        "handles money": [
+          "money-rules",
+          "security-reviewer"
+        ],
+        "handles PII or sensitive data": [
+          "security-reviewer",
+          "doc-steward"
+        ],
+        "child audience": [
+          "kids-compliance"
+        ],
+        "complex local persistence": [
+          "persistence-dev"
+        ],
+        "funnel or market discovery": [
+          "market-researcher"
+        ]
+      },
+      "check_runners": [
+        "npx tsc --noEmit",
+        "npx jest",
+        "npx expo-doctor",
+        "npm run lint"
+      ],
+      "global_deny": [
+        "ios/",
+        "android/",
+        ".expo/",
+        "package-lock.json"
+      ]
+    },
+    "godot-game": {
+      "lead": "scrum-master",
+      "why": "Godot game: scenes/node tree, GDScript, and headless verification.",
+      "agents": [
+        "game-designer",
+        "godot-gameplay-engineer",
+        "game-feel-engineer",
+        "qa-gameplay",
+        "adversarial-player",
+        "art-director",
+        "architecture-reviewer",
+        "design-librarian"
+      ],
+      "skills": [
+        "verify-gameplay",
+        "adversarial-playtest",
+        "review-architecture",
+        "canon-lookup"
+      ],
+      "condicionais": {
+        "has authored levels": [
+          "level-designer",
+          "design-auditor"
+        ],
+        "simulation or combat rules are expressed as data": [
+          "rules-engineer"
+        ],
+        "audio matters": [
+          "audio-designer"
+        ],
+        "heavy art pipeline": [
+          "tech-artist",
+          "visual-identity"
+        ],
+        "shipping to a store": [
+          "store-compliance",
+          "market-researcher"
+        ],
+        "needs human playtesting": [
+          "human-playtest"
+        ]
+      },
+      "check_runners": [
+        "godot --headless --quit",
+        "godot --headless --script"
+      ],
+      "global_deny": [
+        ".godot/",
+        "export_presets.cfg",
+        ".import/"
+      ]
+    },
+    "unreal-game": {
+      "lead": "scrum-master",
+      "why": "Unreal game: Actor/Component, Blueprint versus C++, and an asset-heavy pipeline.",
+      "agents": [
+        "game-designer",
+        "unreal-gameplay-engineer",
+        "game-feel-engineer",
+        "qa-gameplay",
+        "adversarial-player",
+        "art-director",
+        "architecture-reviewer",
+        "design-librarian"
+      ],
+      "skills": [
+        "verify-gameplay",
+        "adversarial-playtest",
+        "review-architecture",
+        "canon-lookup",
+        "unreal-ops"
+      ],
+      "condicionais": {
+        "has authored levels": [
+          "level-designer",
+          "design-auditor"
+        ],
+        "simulation or combat rules are expressed as data": [
+          "rules-engineer"
+        ],
+        "audio matters": [
+          "audio-designer"
+        ],
+        "heavy art or build pipeline": [
+          "tech-artist",
+          "unreal-pipeline-engineer",
+          "visual-identity"
+        ],
+        "needs human playtesting": [
+          "human-playtest"
+        ]
+      },
+      "check_runners": [
+        "<ENGINE_DIR>/Engine/Build/BatchFiles/Build.bat <PROJECT>Editor Win64 Development -Project=<UE_ROOT>/<PROJECT>.uproject",
+        "<ENGINE_DIR>/Engine/Binaries/Win64/UnrealEditor-Cmd.exe <UE_ROOT>/<PROJECT>.uproject -ExecCmds=\"Automation RunTests\" -unattended -nullrhi"
+      ],
+      "global_deny": [
+        "Binaries/",
+        "Intermediate/",
+        "Saved/",
+        "DerivedDataCache/"
+      ]
+    }
+  }
+}

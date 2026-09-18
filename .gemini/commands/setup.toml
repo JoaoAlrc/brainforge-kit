@@ -1,0 +1,5 @@
+description = "Set up Brainforge through a short conversation and start your first task."
+prompt = """
+Follow the Brainforge setup workflow below. Use the user's language.
+@{onboarding/SETUP.md}
+"""

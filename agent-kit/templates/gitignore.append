@@ -1,0 +1,8 @@
+# --- agent-kit additions: Windows / Claude Code hygiene ---
+# `> nul` under Git Bash creates a real file named `nul` (it is only a
+# device name to cmd.exe) — a 928KB stray of exactly this shape was found
+# live in the fleet. Redirect to /dev/null instead; this line catches the
+# mistake when it happens anyway.
+nul
+# Per-machine hook overrides (GODOT path, etc.) — never committed.
+.claude/settings.local.json
