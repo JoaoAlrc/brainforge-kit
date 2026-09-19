@@ -48,7 +48,9 @@ To get the folder through your assistant, you can say:
 > Clone https://github.com/JoaoAlrc/brainforge-kit into a new folder, open it, and
 > help me set it up. Ask about what I want to achieve before configuring anything.
 
-The repository is currently private; cloning requires access from its owner.
+Brainforge Kit is public and available under the [MIT license](LICENSE).
+You can clone it or download the ZIP without requesting access. The Brainforge
+application is developed separately; its code and installers are not included.
 
 ## What happens next
 
